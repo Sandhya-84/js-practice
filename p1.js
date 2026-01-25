@@ -1,0 +1,10 @@
+console.log('hi everyone');
+let tshirt=10;
+let pant =20;
+let sock=30;
+let total = tshirt+pant+sock;
+console.log('total price is:',total);
+console.log(10+2);
+console.log(15-2*6/3);
+console.log(0.1+0.2);
+console.log(Math.round(2.5));
