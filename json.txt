@@ -1,0 +1,228 @@
+JSON BASICS
+
+JSON=java script object notation 
+-> it is a data format used to send data between frontend(react) and backend(node)
+-> API-> sends json-> react reads json
+
+------------------------------------------
+ JSON vs JS
+
+ //json                                 //js
+ {                                       let user={
+  "name": "Sandhya",                        name:"sandhya",
+  "age": 21                                 age:21
+}                                        };
+
+->keys must be in quotes                    ->keys works without quotes
+->cannot store functions                    ->can store functions
+->used to transfer data                     ->used inside js
+
+-------------------------------------------------
+
+🟢 Why JSON exists?
+frontend and backend talk using JSON 
+*React → request → Node → NASA API → Node → React*
+all data tranfers in JSON 
+
+
+-------------------------------------------------
+
+🟢 JSON Rules (IMPORTANT)
+
+->Keys must be in double quotes " "
+->Strings must use double quotes
+->No functions
+->No undefined
+->No comments
+->No trailing comas
+
+-------------------------------------------------
+
+example program for json
+
+{
+  "name": "Sandhya",
+  "age": 21,
+  "isStudent": true,
+  "skills": ["JS", "React", "Node"],
+  "address": {
+    "city": "Tenali",
+    "country": "India"
+  }
+}
+-------------------------------------------------
+
+CONVERSION FROM JSON <=> JS
+
+1️⃣ Object → JSON    {we use JSON.stringify()}
+
+code:
+let user={name:"Sandhya",age:10};
+let jsondata=JSON>stringify(user);          //converts normal js object to json 
+console.log(jsondata);
+
+output:
+{"name":"Sandhya","age":10}
+
+👉 Used when sending data to server
+
+2️⃣ JSON → Object     {we use JSON.parse()}
+
+code:
+let data ={"name":"Sandhya","age":21};
+let obj = JSON.parse(data);
+console.log(obj.name);    //sandhya
+
+👉 Used when receiving API data.
+
+----------------------------------------------
+
+real example
+->in cosmic watch we have fetched the data from NASA API  using URL
+
+****fetch("http://localhost:5000/asteroids/today")
+  .then(res => res.json())******
+
+  what happend?
+  1.server sends json
+  2.  .json() converts JSON->JS obj
+  3. we used it in react UI 
+
+----------------------------------------------
+
+🟢 JSON Data Types Allowed
+Type	                Example
+String	                "hello"
+Number	                  25
+Boolean                  true
+Array	                [1,2,3]
+Object	                { "a":1 }
+null	                   null
+undefined                not allowed
+
+----------------------------------------------
+ 
+🟢 JSON Arrays Example
+
+{
+  "students": [
+    { "name": "A", "age": 20 },
+    { "name": "B", "age": 22 }
+  ]
+}
+
+Accessing:
+data.students[0].name //A
+
+----------------------------------------------
+
+IMPORTANT POINTS
+
+👉 Almost all modern APIs return JSON.
+👉JSON has become the universal language of the internet.
+
+🌍 Why JSON is used everywhere?
+Easy for humans to read
+Easy for computers to parse
+Works in every programming language
+Perfect for web apps & mobile apps
+So most APIs choose JSON as the default format.
+
+----------------------------------------------
+=>REAL WORLD DATA FLOW
+
+Frontend (React)
+     ↓ fetch()
+Backend (Node)
+     ↓ calls API
+External API → returns JSON
+
+
+
+🧩 Step-by-step in super simple words
+
+1️⃣ Frontend (React) → asks for data
+This is the website UI the user sees.
+When the page opens, React runs:
+
+===fetch("/asteroids/today")====
+
+👉 Meaning:
+
+“Hey backend, give me asteroid data!”
+
+Frontend cannot talk directly to NASA API because:
+  -API key must be hidden 🔐
+  -Security & processing needed
+
+So it talks to backend first.
+
+
+
+2️⃣ Backend (Node/Express) → middleman
+Backend receives the request.
+
+====User → React → Backend====
+
+Now backend says:
+   “Ok, let me go ask NASA.”
+
+Backend sends request to external API.
+
+axios.get("https://api.nasa.gov/...")
+
+Backend = messenger/middleman
+
+
+
+3️⃣ External API → gives JSON data
+
+NASA sends data in JSON format like:
+
+{
+  "asteroids": [
+    { "name": "Asteroid A", "velocity": 45000 }
+  ]
+}
+
+JSON = simple text data.
+
+
+
+4️⃣ Backend → cleans & simplifies data
+
+NASA data is huge and messy 😵
+
+So backend:
+    -extracts only needed fields
+    -calculates risk score
+sends simplified JSON
+
+Backend → React:
+{
+  "asteroids":[
+    { "name":"Asteroid A", "risk_score":45 }
+  ]
+}
+
+5️⃣ Frontend → shows cards on screen
+
+React receives JSON and shows it nicely:
+    -Cards
+    -Charts
+    -Stats
+User sees the website 🎉
+
+⭐ Full flow in one line
+
+User opens site → React asks backend → Backend asks NASA → NASA sends JSON → Backend cleans it → React shows UI.
+
+------------------------------------------------------------------------------------
+json can be converted into any language?
+
+->yes,json can be converted into almost any programming language
+->That’s actually why JSON exists — it is a universal data language for communication between systems
+
+
+🔑 One line to remember
+JSON is the common language spoken by all programming languages.
