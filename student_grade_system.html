@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+          <title>Student grade system</title>
+          <style>
+              body{
+                  font-family: Arial, sans-serif;
+                  background-color: #f0f0f0;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  padding: 20px;
+              }
+              h1{
+                  color: #333;
+              }
+              input, button{
+                  padding: 10px;
+                  margin: 5px;
+                  border-radius: 5px;
+                  border: 1px solid #ccc;
+              }
+              table{
+                  width: 80%;
+                  border-collapse: collapse;
+                  margin-top: 20px;
+              }
+              th, td{
+                  border: 1px solid #ccc;
+                  padding: 10px;
+                  text-align: left;
+              }
+              th{
+                  background-color: #eee;
+              }
+              .pass{color:green;}
+              .fail{color:red;}
+            </style>
+    </head>
+    <body>
+        <h1>STUDENT GRADE SYSTEM </h1>
+        <input type="text" id="name" placeholder="student name ">
+        <input type="number" id="marks" placeholder="Marks (0-100)">
+        <button onclick="addStudent()">Add Student</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>marks</th>
+                    <th>grade</th>
+                    <th>result</th>
+                </tr>
+            </thead>
+            <tbody id="studentTableBody"></tbody>
+                <!-- Student rows will be added here -->
+        </table>
+
+        <script>
+            let students=[];
+            function getGrade(marks){
+                if(marks>=90) return 'A';
+                else if(marks>=80) return 'B';
+                else if(marks>=70) return 'C';
+                else if(marks>=60) return 'D';
+                else return 'F';
+            }
+            function getResult(marks){
+                return marks>=60 ? 'Pass' : 'Fail';
+            }
+            function addStudent(){
+                let name=document.getElementById("name").value;
+                let marks=parseInt(document.getElementById("marks").value);
+                if(name==="" || isNaN(marks)){
+                    alert("Please enter both name and marks");
+                    return;
+                }
+                let grade=getGrade(marks);
+                let result=getResult(marks);
+                let student={name,marks,grade,result};
+                students.push(student);
+                displayStudents();
+            }
+            function displayStudents(){
+                let tableBody=document.getElementById("studentTableBody");
+                tableBody.innerHTML="";
+                students.forEach(student=>{
+                    let row=`<tr>
+                        <td>${student.name}</td>
+                        <td>${student.marks}</td>
+                        <td>${student.grade}</td>
+                        <td>${student.result}</td>
+                    </tr>`;
+                    tableBody.innerHTML+=row;
+                });
+            }
+        </script>
+    </body>
+</html>
