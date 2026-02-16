@@ -1,0 +1,27 @@
+<!DOCTYPE html >
+<html lang="en">
+    <head>
+        <title>Form Practice</title>
+    </head>
+    <body>
+        <form id="myform">
+            <input type="text" id="name" placeholder="enter your name">
+            <input type="email" id="email" placeholder="enter your email"> 
+            <input type="password" id="password" placeholder="enter your password">
+            <button type="submit">Submit</button>
+        </form>
+        <p id="result"></p>
+        <script>
+            let form = document.querySelector("#myform");
+            let result=document.querySelector("#result");
+            form.addEventListener("submit",function(event){
+                event.preventDefault();
+                let name =document.querySelector("#name").value;
+                let email=document.querySelector("#email").value;
+                let password=document.querySelector("#password").value;
+                result= `Name: ${name} <br> Email: ${email} <br> Password: ${password}`;   
+                document.querySelector("#result").innerHTML=result;
+            });
+        </script>
+    </body>
+</html>

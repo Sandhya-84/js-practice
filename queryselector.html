@@ -1,0 +1,22 @@
+<!DOCTYPe html>
+<html lang="en">   
+<head>
+    <title>Query Selector Practice </title>
+</head>
+<body>
+    <div id="box">
+   <p>Hello</p>
+</div>
+    <h1 class="title">hello world</h1>
+    <button>Change Title</button>
+    <script>
+        let p = document.querySelector("#box p");
+        let heading=document.querySelector(".title");  // Get the first element with the class "title"...(.) for class and (#) for id
+        let button=document.querySelector("button");  // Get the first button element 
+        button.addEventListener("click", () => {
+        heading.textContent = "Changed using querySelector!";
+        heading.style.color = "green";
+    });
+    </script>
+</body>
+</html>
