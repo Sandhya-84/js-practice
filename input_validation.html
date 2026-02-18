@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Registration Form</h2>
+
+<form id="form">
+    Name: <input type="text" id="name"><br><br>
+    Email: <input type="text" id="email"><br><br>
+    Password: <input type="password" id="password"><br><br>
+    Age: <input type="number" id="age"><br><br>
+
+    <button type="submit">Register</button>
+</form>
+
+<p id="msg"></p>
+
+<script>
+let form = document.querySelector("#form");
+let msg = document.querySelector("#msg");
+
+form.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let name = document.querySelector("#name").value.trim();
+    let email = document.querySelector("#email").value.trim();
+    let password = document.querySelector("#password").value.trim();
+    let age = document.querySelector("#age").value.trim();
+
+    // 1️⃣ Required field validation
+    if(name === "" || email === "" || password === "" || age === ""){
+        showError("All fields are required!");
+        return;
+    }
+
+    // 2️⃣ Name validation
+    if(name.length < 3){
+        showError("Name must be at least 3 characters!");
+        return;
+    }
+
+    // 3️⃣ Email validation (Regex)
+    let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    if(!email.match(emailPattern)){
+        showError("Invalid email format!");
+        return;
+    }
+
+    // 4️⃣ Password validation
+    if(password.length < 6){
+        showError("Password must be at least 6 characters!");
+        return;
+    }
+
+    // 5️⃣ Age validation
+    if(age < 18){
+        showError("You must be 18+ to register!");
+        return;
+    }
+
+    // Success
+    msg.textContent = "Registration Successful 🎉";
+    msg.style.color = "green";
+});
+
+function showError(text){
+    msg.textContent = text;
+    msg.style.color = "red";
+}
+</script>
+
+</body>
+</html>
