@@ -1,10 +1,10 @@
 //implicit
-console.log('5'+2);
+console.log('5'+2);  // + operator is used for both addition and string concatenation. When one operand is a string, it converts the other operand to a string and concatenates them.
 console.log('5'-2);
 console.log('5'*2);
 console.log('5'/2);
 
-
+// in js expressions are evaluated form left to right, so in the first example '5'+2 is evaluated first, resulting in '52', and then '52'+3 is evaluated, resulting in '523'. In the second example, 5+2 is evaluated first, resulting in 7, and then 7+'3' is evaluated, resulting in '73'.
 console.log(true+1);
 console.log(false+1);
 console.log(true+false);
